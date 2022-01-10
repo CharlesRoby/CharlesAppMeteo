@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 startSignInActivity();
             }
         });
-        // Chat Button
+        // Button meteo
         binding.chatButton.setOnClickListener(view -> {
             if(userManager.isCurrentUserLogged()){
                 startMentorChatActivity();
