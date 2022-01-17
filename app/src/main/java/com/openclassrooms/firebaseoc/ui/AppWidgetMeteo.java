@@ -21,23 +21,6 @@ import com.openclassrooms.firebaseoc.R;
  */
 public class AppWidgetMeteo extends AppWidgetProvider {
 
-    final String APP_ID = "dab3af44de7d24ae7ff86549334e45bd";
-    final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
-
-    final long MIN_TIME = 5000;
-    final float MIN_DISTANCE = 1000;
-    final int REQUEST_CODE = 101;
-
-    String Location_Provider = LocationManager.GPS_PROVIDER;
-
-    TextView NameofCity, weatherState, Temperature;
-    ImageView mweatherIcon;
-
-
-    LocationManager mLocationManager;
-    LocationListener mLocationListner;
-
-
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
@@ -67,13 +50,6 @@ public class AppWidgetMeteo extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
-    }
-
-    private  void onEnabled(weatherData weather){
-
-        Temperature.setText(weather.getmTemperature());
-        NameofCity.setText(weather.getMcity());
-        weatherState.setText(weather.getmWeatherType());
     }
 }
 
