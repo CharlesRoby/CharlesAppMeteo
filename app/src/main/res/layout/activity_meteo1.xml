@@ -14,7 +14,6 @@
         android:layout_height="270dp"
         android:layout_marginTop="80dp"
         android:src="@drawable/finding">
-
     </ImageView>
 
 
@@ -45,7 +44,7 @@
             android:id="@+id/weatherCondition"
             android:textSize="30sp"
             android:textColor="#ffffff"
-            android:text="---------"
+            android:text=""
             android:paddingStart="30sp">
 
         </TextView>
@@ -55,7 +54,7 @@
             android:id="@+id/cityName"
             android:textStyle="bold"
             android:textSize="40sp"
-            android:text="Fetching___"
+            android:text="Chargement"
             android:paddingStart="30sp"
             android:textColor="#ffffff">
 

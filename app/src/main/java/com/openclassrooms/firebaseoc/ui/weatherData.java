@@ -25,7 +25,7 @@ public class weatherData {
         }
 
 
-         catch (JSONException e) {
+        catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
@@ -48,7 +48,7 @@ public class weatherData {
         {
             return "shower";
         }
-       else  if(condition>=600 && condition<=700)
+        else  if(condition>=600 && condition<=700)
         {
             return "snow2";
         }
@@ -61,7 +61,7 @@ public class weatherData {
         {
             return "overcast";
         }
-       else if(condition==800)
+        else if(condition==800)
         {
             return "sunny";
         }
@@ -69,7 +69,7 @@ public class weatherData {
         {
             return "cloudy";
         }
-       else  if(condition>=900 && condition<=902)
+        else  if(condition>=900 && condition<=902)
         {
             return "thunderstrom1";
         }

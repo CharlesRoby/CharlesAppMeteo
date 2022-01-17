@@ -26,6 +26,8 @@ import com.openclassrooms.firebaseoc.R;
 
 import org.json.JSONObject;
 
+import cz.msebera.android.httpclient.Header;
+
 public class MeteoActivity extends AppCompatActivity {
 
     final String APP_ID = "dab3af44de7d24ae7ff86549334e45bd";
@@ -89,8 +91,6 @@ public class MeteoActivity extends AppCompatActivity {
         {
             getWeatherForCurrentLocation();
         }
-
-
     }
 
 
@@ -121,11 +121,6 @@ public class MeteoActivity extends AppCompatActivity {
                 params.put("lon",Longitude);
                 params.put("appid",APP_ID);
                 letsdoSomeNetworking(params);
-
-
-
-
-
             }
 
             @Override
@@ -175,7 +170,7 @@ public class MeteoActivity extends AppCompatActivity {
             }
             else
             {
-                //si l'utilisateur refuse la permission
+                //user denied the permission
             }
         }
 
@@ -189,7 +184,8 @@ public class MeteoActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(WEATHER_URL,params,new JsonHttpResponseHandler()
         {
-            public void onSuccess(int statusCode, PreferenceActivity.Header[] headers, JSONObject response) {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
                 Toast.makeText(MeteoActivity.this,"Data Get Success",Toast.LENGTH_SHORT).show();
 
@@ -201,7 +197,8 @@ public class MeteoActivity extends AppCompatActivity {
             }
 
 
-            public void onFailure(int statusCode, PreferenceActivity.Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 //super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
@@ -212,14 +209,11 @@ public class MeteoActivity extends AppCompatActivity {
 
     private  void updateUI(weatherData weather){
 
-
         Temperature.setText(weather.getmTemperature());
         NameofCity.setText(weather.getMcity());
         weatherState.setText(weather.getmWeatherType());
         int resourceID=getResources().getIdentifier(weather.getMicon(),"drawable",getPackageName());
         mweatherIcon.setImageResource(resourceID);
-
-
     }
 
     @Override

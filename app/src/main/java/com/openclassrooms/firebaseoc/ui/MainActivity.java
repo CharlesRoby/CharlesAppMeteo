@@ -52,9 +52,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             }
         });
         // Button meteo
-        binding.chatButton.setOnClickListener(view -> {
+        binding.meteoButton.setOnClickListener(view -> {
             if(userManager.isCurrentUserLogged()){
-                startMentorChatActivity();
+                startMeteoActivity();
             }else{
                 showSnackBar(getString(R.string.error_not_connected));
             }
@@ -68,14 +68,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     // Launch Mentor Chat Activity
-    private void startMentorChatActivity(){
+    private void startMeteoActivity(){
         Intent intent = new Intent(this, MeteoActivity.class);
         startActivity(intent);
     }
 
     private void startSignInActivity(){
 
-        // Choose authentication providers
+        // Choix de l'authentification
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.EmailBuilder().build());
