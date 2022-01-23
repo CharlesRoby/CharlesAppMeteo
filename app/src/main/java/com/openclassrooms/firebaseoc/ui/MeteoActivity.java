@@ -7,12 +7,14 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -214,6 +216,16 @@ public class MeteoActivity extends AppCompatActivity {
         weatherState.setText(weather.getmWeatherType());
         int resourceID=getResources().getIdentifier(weather.getMicon(),"drawable",getPackageName());
         mweatherIcon.setImageResource(resourceID);
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("TEMP", "" + weather.getmTemperature());
+        editor.putString("CITY", "" + weather.getMcity());
+        editor.putString("STATE", "" + weather.getmWeatherType());
+        editor.putInt("IMAGE", resourceID);
+        editor.commit();
+
     }
 
     @Override

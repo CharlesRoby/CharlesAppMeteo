@@ -39,6 +39,26 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/default_large_margin">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:text="@string/main_activity_Calendrier"
+            android:layout_margin="@dimen/default_margin"/>
+
+        <Button
+            android:id="@+id/buttonDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/LaDate"
+            android:textColor="#fff"
+            android:textSize="@dimen/default_text_size"
+            android:background="@drawable/button_radius_accent_color"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_margin="@dimen/default_large_margin"
+            android:padding="@dimen/default_large_margin"/>
+
         <!-- BUTTON LOGIN -->
         <Button
             android:id="@+id/loginButton"

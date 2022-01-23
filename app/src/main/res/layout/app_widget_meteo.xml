@@ -2,20 +2,20 @@
     style="@style/Widget.FirebaseOC.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@android:color/transparent"
     android:theme="@style/AppTheme.AppWidgetContainer"
     android:padding="@dimen/widget_margin">
 <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="220dp"
+    android:layout_height="220dp"
     android:orientation="vertical"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true">
 
     <ImageView
         android:id="@+id/weatherIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
     <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"

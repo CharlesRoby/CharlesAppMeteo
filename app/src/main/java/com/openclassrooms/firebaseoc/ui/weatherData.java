@@ -38,11 +38,11 @@ public class weatherData {
     {
         if(condition>=0 && condition<=300)
         {
-            return "thunderstrom1";
+            return "orage1";
         }
         else if(condition>=300 && condition<=500)
         {
-            return "lightrain";
+            return "pluie_legere";
         }
         else if(condition>=500 && condition<=600)
         {
@@ -50,40 +50,40 @@ public class weatherData {
         }
         else  if(condition>=600 && condition<=700)
         {
-            return "snow2";
+            return "neige2";
         }
         else if(condition>=701 && condition<=771)
         {
-            return "fog";
+            return "brouillard";
         }
 
         else if(condition>=772 && condition<=800)
         {
-            return "overcast";
+            return "couvert";
         }
         else if(condition==800)
         {
-            return "sunny";
+            return "ensoleille";
         }
         else if(condition>=801 && condition<=804)
         {
-            return "cloudy";
+            return "nuageux";
         }
         else  if(condition>=900 && condition<=902)
         {
-            return "thunderstrom1";
+            return "orage1";
         }
         if(condition==903)
         {
-            return "snow1";
+            return "neige2";
         }
         if(condition==904)
         {
-            return "sunny";
+            return "ensoleille";
         }
         if(condition>=905 && condition<=1000)
         {
-            return "thunderstrom2";
+            return "orage2";
         }
 
         return "dunno";

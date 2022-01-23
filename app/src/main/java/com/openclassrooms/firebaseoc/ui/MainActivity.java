@@ -1,9 +1,15 @@
 package com.openclassrooms.firebaseoc.ui;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -13,10 +19,12 @@ import com.openclassrooms.firebaseoc.R;
 import com.openclassrooms.firebaseoc.databinding.ActivityMainBinding;
 import com.openclassrooms.firebaseoc.ui.manager.UserManager;
 
+import java.text.DateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements DatePickerDialog.OnDateSetListener{
 
     private static final int RC_SIGN_IN = 123;
     private UserManager userManager = UserManager.getInstance();
@@ -30,6 +38,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupListeners();
+
+        //Boutton calendrier
+        Button button = (Button) findViewById(R.id.buttonDate);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
     }
 
     @Override
@@ -124,6 +142,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     // Show Snack Bar with a message
     private void showSnackBar( String message){
         Snackbar.make(binding.mainLayout, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    //Calendrier
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(currentDateString);
     }
 
 }
