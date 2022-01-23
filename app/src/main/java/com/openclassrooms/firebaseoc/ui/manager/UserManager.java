@@ -2,8 +2,10 @@ package com.openclassrooms.firebaseoc.ui.manager;
 
 import android.content.Context;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.openclassrooms.firebaseoc.ui.model.User;
 import com.openclassrooms.firebaseoc.ui.repository.UserRepository;
 
 public class UserManager {
@@ -36,11 +38,31 @@ public class UserManager {
         return (this.getCurrentUser() != null);
     }
 
+
     public Task<Void> signOut(Context context){
-        return userRepository.signOut(context);
+        return AuthUI.getInstance().signOut(context);
+    }
+
+    public void createUser(){
+        userRepository.createUser();
+    }
+
+    public Task<User> getUserData(){
+        return userRepository.getUserData().continueWith(task -> task.getResult().toObject(User.class)) ;
+    }
+
+    public Task<Void> updateUsername(String username){
+        return userRepository.updateUsername(username);
+    }
+
+    public void updateNotif(Boolean Notif){
+        userRepository.updateNotif(Notif);
     }
 
     public Task<Void> deleteUser(Context context){
-        return userRepository.deleteUser(context);
+        return userRepository.deleteUser(context).addOnCompleteListener(task -> {
+            userRepository.deleteUserFromFirestore();
+        });
     }
+
 }

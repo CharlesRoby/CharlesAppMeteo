@@ -37,20 +37,17 @@ public class AppWidgetMeteo extends AppWidgetProvider {
         String state = prefs.getString("STATE", null);
         int image = prefs.getInt("IMAGE", 0);
 
-        // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.app_widget_meteo);
         views.setImageViewResource(R.id.weatherIcon, image);
         views.setTextViewText(R.id.temperature, temp);
         views.setTextViewText(R.id.weatherCondition, city);
         views.setTextViewText(R.id.cityName, state);
 
-        // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
@@ -58,12 +55,10 @@ public class AppWidgetMeteo extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
     }
 
     @Override
     public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
     }
 }
 

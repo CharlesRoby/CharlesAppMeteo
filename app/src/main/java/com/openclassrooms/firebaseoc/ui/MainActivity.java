@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements D
         super.onResume();
         updateLoginButton();
     }
-    // Update Login Button when activity is resuming
+    // Update Login Button
     private void updateLoginButton(){
         binding.loginButton.setText(userManager.isCurrentUserLogged() ? getString(R.string.button_login_text_logged) : getString(R.string.button_login_text_not_logged));
     }
@@ -79,13 +79,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements D
         });
     }
 
-    // Launching Profile Activity
+    //  Profile Activity
     private void startProfileActivity(){
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
-    // Launch Mentor Chat Activity
+    // Activity meteo
     private void startMeteoActivity(){
         Intent intent = new Intent(this, MeteoActivity.class);
         startActivity(intent);
@@ -98,7 +98,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements D
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.EmailBuilder().build());
 
-        // Launch the activity
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
@@ -116,7 +115,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements D
         this.handleResponseAfterSignIn(requestCode, resultCode, data);
     }
 
-    // Method that handles response after SignIn Activity close
     private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data){
 
         IdpResponse response = IdpResponse.fromResultIntent(data);
@@ -124,6 +122,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements D
         if (requestCode == RC_SIGN_IN) {
             // SUCCESS
             if (resultCode == RESULT_OK) {
+                userManager.createUser();
                 showSnackBar(getString(R.string.connection_succeed));
             } else {
                 // ERRORS
@@ -139,7 +138,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements D
             }
         }
     }
-    // Show Snack Bar with a message
+    // Snack Bar
     private void showSnackBar( String message){
         Snackbar.make(binding.mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }

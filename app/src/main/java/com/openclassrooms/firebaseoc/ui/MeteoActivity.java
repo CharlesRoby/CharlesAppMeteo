@@ -74,11 +74,6 @@ public class MeteoActivity extends AppCompatActivity {
 
     }
 
- /*   @Override
-   protected void onResume() {
-       super.onResume();
-       getWeatherForCurrentLocation();
-    }*/
 
     @Override
     protected void onResume() {
@@ -137,7 +132,6 @@ public class MeteoActivity extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(String provider) {
-                //not able to get location
             }
         };
 
@@ -145,11 +139,6 @@ public class MeteoActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
             return;
         }
@@ -172,7 +161,7 @@ public class MeteoActivity extends AppCompatActivity {
             }
             else
             {
-                //user denied the permission
+                //si l'utilisateur refuse la permission
             }
         }
 
@@ -195,13 +184,11 @@ public class MeteoActivity extends AppCompatActivity {
                 updateUI(weatherD);
 
 
-                // super.onSuccess(statusCode, headers, response);
             }
 
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                //super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
 

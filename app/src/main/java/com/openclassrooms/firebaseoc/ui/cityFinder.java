@@ -11,6 +11,7 @@ import com.openclassrooms.firebaseoc.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//Recherche de ville
 public class cityFinder extends AppCompatActivity {
 
     @Override

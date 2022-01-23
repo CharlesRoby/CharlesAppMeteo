@@ -3,6 +3,7 @@ package com.openclassrooms.firebaseoc.ui;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -27,17 +28,24 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupListeners();
+        updateUIWithUserData();
     }
 
 
     private void setupListeners(){
 
-        binding.updateButton.setOnClickListener(view -> { });
-        // Sign out button
-        binding.signOutButton.setOnClickListener(view -> {
-            userManager.signOut(this).addOnSuccessListener(aVoid -> {
-                finish();
-            });
+        // Notif checkbox
+        binding.NotifCheckBox.setOnCheckedChangeListener((compoundButton, checked) -> {
+            userManager.updateNotif(checked);
+        });
+
+        // Update button
+        binding.updateButton.setOnClickListener(view -> {
+            binding.progressBar.setVisibility(View.VISIBLE);
+            userManager.updateUsername(binding.usernameEditText.getText().toString())
+                    .addOnSuccessListener(aVoid -> {
+                        binding.progressBar.setVisibility(View.INVISIBLE);
+                    });
         });
 
         // Delete button
@@ -78,13 +86,21 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
 
     private void setTextUserData(FirebaseUser user){
 
-        //Get email & username from User
+        //Get email & username du User
         String email = TextUtils.isEmpty(user.getEmail()) ? getString(R.string.info_no_email_found) : user.getEmail();
         String username = TextUtils.isEmpty(user.getDisplayName()) ? getString(R.string.info_no_username_found) : user.getDisplayName();
 
-        //Update views with data
+        //Update views
         binding.usernameEditText.setText(username);
         binding.emailTextView.setText(email);
+    }
+
+    private void getUserData(){
+        userManager.getUserData().addOnSuccessListener(user -> {
+            String username = TextUtils.isEmpty(user.getUsername()) ? getString(R.string.info_no_username_found) : user.getUsername();
+            binding.NotifCheckBox.setChecked(user.getNotif());
+            binding.usernameEditText.setText(username);
+        });
     }
 
 }

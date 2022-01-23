@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AppMeteo</string>
+    <string name="bienvenu">Bonjour</string>
 
     <string name="main_activity_description">Vous êtes connecté, vous pouvez maintenant regarder la météo !</string>
     <string name="main_activity_Calendrier">Date :</string>
@@ -9,7 +10,6 @@
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="notification_title">"Vous avez reçu une notification"</string>
 
-    <!-- MAIN ACTIVITY -->
     <string name="error_not_connected">Vous devez vous connecter !</string>
     <string name="error_authentication_canceled">Authentification annulée&#8230;</string>
     <string name="error_no_internet">Aucune connexion internet !</string>
